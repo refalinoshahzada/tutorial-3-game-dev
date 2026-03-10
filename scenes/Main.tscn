@@ -1,18 +1,75 @@
 [gd_scene format=3 uid="uid://dsyfep1odrxje"]
 
 [ext_resource type="PackedScene" uid="uid://ds60n6krsavle" path="res://scenes/Ground.tscn" id="1_elqb8"]
-[ext_resource type="PackedScene" uid="uid://dvlyhuf4uyjqv" path="res://scenes/Player.tscn" id="2_rvslj"]
+[ext_resource type="PackedScene" uid="uid://ch5enr8cb684p" path="res://scenes/NewPlayer.tscn" id="2_rvslj"]
+[ext_resource type="AudioStream" uid="uid://cebg868nut7af" path="res://assets/sound/assets_sound_bgm.wav" id="3_0bbpv"]
+[ext_resource type="PackedScene" uid="uid://fvt17cejcyh4" path="res://scenes/NPC.tscn" id="4_rarhs"]
+[ext_resource type="AudioStream" uid="uid://7ta0y76c7awe" path="res://assets/sound/sneaky_snitch_kevin_macleod.wav" id="5_vcsgt"]
+[ext_resource type="Texture2D" uid="uid://mtxqb5vpxfp6" path="res://assets/backgrounds/background.jpg" id="6_c01mt"]
 
 [node name="Root" type="Node2D" unique_id=918599496]
 
 [node name="Ground" parent="." unique_id=673580990 instance=ExtResource("1_elqb8")]
-position = Vector2(296, 494)
+visible = false
+position = Vector2(220, 567)
 
 [node name="Ground2" parent="." unique_id=1551337937 instance=ExtResource("1_elqb8")]
-position = Vector2(856, 494)
+visible = false
+position = Vector2(928, 566)
 
 [node name="Ground3" parent="." unique_id=1648397147 instance=ExtResource("1_elqb8")]
-position = Vector2(576, 564)
+visible = false
+position = Vector2(574, 566)
 
-[node name="Player" parent="." unique_id=833048049 instance=ExtResource("2_rvslj")]
-position = Vector2(232, 95)
+[node name="NewPlayer" parent="." unique_id=735628807 instance=ExtResource("2_rvslj")]
+position = Vector2(246, 158)
+
+[node name="BGMPlayer" type="AudioStreamPlayer2D" parent="." unique_id=916054688]
+stream = ExtResource("3_0bbpv")
+volume_db = -80.0
+autoplay = true
+
+[node name="DialogueUI" type="CanvasLayer" parent="." unique_id=1533556612]
+
+[node name="DialogueBox" type="Panel" parent="DialogueUI" unique_id=633498324]
+visible = false
+custom_minimum_size = Vector2(0, 150)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="DialogueUI/DialogueBox" unique_id=1179655437]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="DialogueText" type="Label" parent="DialogueUI/DialogueBox/MarginContainer" unique_id=467950868]
+layout_mode = 2
+text = "Hello Player! This is the example dialogue I made!"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="NPC" parent="." unique_id=1327734362 instance=ExtResource("4_rarhs")]
+position = Vector2(878, 480)
+
+[node name="BGMNew" type="AudioStreamPlayer2D" parent="." unique_id=599501594]
+stream = ExtResource("5_vcsgt")
+volume_db = -10.0
+autoplay = true
+
+[node name="Background" type="Sprite2D" parent="." unique_id=2023512831]
+z_index = -10
+position = Vector2(593, 327)
+scale = Vector2(1.8, 1.8)
+texture = ExtResource("6_c01mt")
+metadata/_edit_lock_ = true

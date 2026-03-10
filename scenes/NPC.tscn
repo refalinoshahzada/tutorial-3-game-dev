@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://fvt17cejcyh4"]
+
+[ext_resource type="Script" uid="uid://cfaejpo07fj2n" path="res://scenes/NPC.gd" id="1_ll5ud"]
+[ext_resource type="Texture2D" uid="uid://dw2e4e8f2hrcl" path="res://assets/kenney_platformercharacters/PNG/Female/female_tilesheet.png" id="2_u1jv5"]
+[ext_resource type="AudioStream" uid="uid://dlu1qsuibg2fq" path="res://assets/sound/hi_roblox.wav" id="3_ktgr7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tciug"]
+atlas = ExtResource("2_u1jv5")
+region = Rect2(0, 0, 80, 110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bksm8"]
+atlas = ExtResource("2_u1jv5")
+region = Rect2(400, 220, 80, 110)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jc52h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tciug")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bksm8")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6sao2"]
+size = Vector2(162, 88)
+
+[node name="NPC" type="Node2D" unique_id=1327734362]
+script = ExtResource("1_ll5ud")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1628223214]
+sprite_frames = SubResource("SpriteFrames_jc52h")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.32906398
+
+[node name="InteractionArea" type="Area2D" parent="." unique_id=1311274005]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=300653667]
+position = Vector2(2, 10)
+shape = SubResource("RectangleShape2D_6sao2")
+
+[node name="TalkSound" type="AudioStreamPlayer2D" parent="." unique_id=1357733356]
+stream = ExtResource("3_ktgr7")
+
+[connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="." method="_on_interaction_area_body_exited"]
